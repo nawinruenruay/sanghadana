@@ -1,0 +1,64 @@
+/*==================================================================
+Navlink
+==================================================================*/
+.NavLink {
+  border: none;
+  outline: none;
+  transition: all 0.4s ease;
+  background-position: center;
+  text-transform: uppercase;
+  background-position: center;
+  transition: background 0.8s;
+}
+.NavLink:hover {
+  color: black !important;
+  background: #3838381a
+    radial-gradient(circle, transparent 1%, rgb(250, 250, 250) 1%) center/15000%;
+}
+/* .subNav {
+    border: none;
+    outline: none;
+    transition: all 0.4s ease;
+    background-position: center;
+    text-transform: uppercase;
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .subNav:hover {
+    color: #3366ff !important;
+    background: transparent !important;
+  }
+  .subNav.active {
+    color: #3366ff;
+  } */
+.ripple:hover {
+  background: #e3f2fd radial-gradient(circle, transparent 1%, 1%) center/15000%;
+}
+.ripple:active {
+  background-size: 100%;
+  transition: background 0s;
+}
+/* ------------------------------------------------------------------ */
+
+/*==================================================================
+      CUSTOM
+      ==================================================================*/
+/* .m_f0824112:where([data-active]) {
+    background-color: #e3f2fd !important;
+    color: var(--nl-color);
+  }
+  .m_e17b862f {
+    padding-inline-start: 0 !important;
+    width: auto;
+  } */
+/* ------------------------------------------------------------------ */
+
+/*==================================================================
+      Content
+      ==================================================================*/
+/* .Main-Content {
+    box-shadow: 0 4px 6px -2px rgb(0 0 0 / 12%), 0 2px 2px -1px rgb(0 0 0 / 5%);
+    overflow-x: auto;
+  } */
+
+/* ------------------------------------------------------------------ */

@@ -1,0 +1,13 @@
+.header {
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  margin-bottom: calc(7.5rem * var(--mantine-scale));
+  background-color: var(--mantine-color-body);
+  border-bottom: calc(0.0625rem * var(--mantine-scale)) solid
+    var(--mantine-color-gray-3);
+}
