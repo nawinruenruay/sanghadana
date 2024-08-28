@@ -1,0 +1,38 @@
+.controls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.root {
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+  }
+}
+
+.customModal {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.card {
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 150ms ease, box-shadow 100ms ease;
+
+  @mixin hover {
+    box-shadow: var(--mantine-shadow-md);
+    transform: scale(1.02);
+  }
+}
+
+.image {
+  transition: transform 500ms ease;
+
+  @mixin hover {
+    & {
+      transform: scale(1.03);
+    }
+  }
+}

@@ -1,0 +1,61 @@
+.header {
+  height: rem(80px);
+  padding-left: var(--mantine-spacing-xs);
+  padding-right: var(--mantine-spacing-xs);
+  border-bottom: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+}
+
+.link {
+  padding: rem(8px) rem(12px);
+  border-radius: var(--mantine-radius-sm);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  width: auto;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    height: rem(42px);
+    width: 100%;
+  }
+
+  @mixin hover {
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-6)
+    );
+  }
+}
+
+.root {
+  background: linear-gradient(
+    var(--mantine-color-body),
+    alpha(var(--mantine-color-body), 0.75)
+  );
+  backdrop-filter: blur(3px);
+
+  &::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    height: rem(6px);
+    bottom: rem(-7px);
+    background: linear-gradient(
+      light-dark(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.45)),
+      rgba(0, 0, 0, 0)
+    );
+    transition: opacity 0.2s;
+    opacity: 0;
+  }
+}
+
+.scrolled::after {
+  opacity: 1;
+}
+
+.bgcolor_main {
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-6)
+  );
+}

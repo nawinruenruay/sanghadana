@@ -1,0 +1,40 @@
+.controls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.root {
+  &:hover {
+    .controls {
+      opacity: 1;
+    }
+  }
+}
+
+.image {
+  transition: transform 500ms ease;
+
+  @mixin hover {
+    & {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.downloadButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.downloadButton:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
