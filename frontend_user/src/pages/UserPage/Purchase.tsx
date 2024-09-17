@@ -569,7 +569,7 @@ export function Purchase() {
         ) : (
           <>
             <Flex align={"center"}>
-              <Text component="span">คุณไม่ได้สั่งสินค้าผลิตภัณฑ์ของชุมชน</Text>
+              <Text component="span">คุณไม่ได้สั่งสินค้าผลิตภัณฑ์</Text>
             </Flex>
           </>
         )}
