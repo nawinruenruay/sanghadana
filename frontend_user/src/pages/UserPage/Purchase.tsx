@@ -28,7 +28,6 @@ import {
   IconCash,
   IconMoodSad,
   IconChevronRight,
-  IconEye,
   IconCopy,
 } from "@tabler/icons-react";
 import { DataTable } from "mantine-datatable";
@@ -261,7 +260,7 @@ export function Purchase() {
                 title: "วันที่สั่งซื้อ",
                 render: ({ order_date }) => (
                   <>
-                    <Text size={"md"}>
+                    <Text size={"sm"}>
                       {new Date(order_date).toLocaleDateString(
                         "TH-th",
                         options2
@@ -276,7 +275,7 @@ export function Purchase() {
                 title: "เลขที่การสั่งซื้อ",
                 render: ({ order_id }) => (
                   <>
-                    <Text size={"md"}>{order_id}</Text>
+                    <Text size={"sm"}>{order_id}</Text>
                   </>
                 ),
               },
@@ -330,6 +329,7 @@ export function Purchase() {
                             e.stopPropagation();
                             Checkoutt(order_id);
                           }}
+                          size={"sm"}
                         >
                           ชำระเงิน
                         </Button>
@@ -341,6 +341,7 @@ export function Purchase() {
                             e.stopPropagation();
                             CancelOrder(order_id);
                           }}
+                          size={"sm"}
                         >
                           ยกเลิก
                         </Button>
@@ -353,7 +354,7 @@ export function Purchase() {
                       <>
                         {note_tracking ? (
                           <>
-                            <Text size={"sm"} c={"blue"}>
+                            <Text size={"sm"}>
                               หมายเลขพัสดุ : {note_tracking}
                             </Text>
                             <CopyButton value={note_tracking} timeout={1500}>
@@ -385,15 +386,14 @@ export function Purchase() {
                         ) : (
                           <>
                             <Button
-                              variant={"subtle"}
-                              leftSection={<IconEye />}
                               onClick={(e: React.MouseEvent) => {
                                 e.stopPropagation();
                                 FetchImage(order_id);
                                 setModalImg(true);
                               }}
+                              variant={"default"}
                             >
-                              รูปภาพการถวายสังฆทาน
+                              หลักฐานรูปภาพการถวายสังฆทาน
                             </Button>
                           </>
                         )}
