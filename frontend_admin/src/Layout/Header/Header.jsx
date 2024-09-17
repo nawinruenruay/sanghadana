@@ -47,7 +47,7 @@ function Header({ opened, toggle }) {
               variant="gradient"
               gradient={{ from: "teal", to: "lime", deg: 90 }}
             >
-              Superadmin System
+              ระบบจัดการสังฆทานออนไลน์
             </Text>
           </Flex>
         </Group>
