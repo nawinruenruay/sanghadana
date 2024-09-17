@@ -22,6 +22,8 @@ import { IconCash, IconCheck, IconExclamationMark } from "@tabler/icons-react";
 import { useDocumentTitle } from "@mantine/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import checkout from "../../assets/img/checkout.png";
+
 type FormValues = {
   img: string;
   img_file: File | null;
@@ -274,11 +276,7 @@ export function CheckoutPage() {
                 <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
                   <Flex justify="center" direction="column" wrap="wrap">
                     <Center>
-                      <Image
-                        src={
-                          "https://i.pinimg.com/564x/c6/ad/81/c6ad815f01a76c92634b751bd67db271.jpg"
-                        }
-                      />
+                      <Image src={checkout} />
                     </Center>
                   </Flex>
                 </Grid.Col>
