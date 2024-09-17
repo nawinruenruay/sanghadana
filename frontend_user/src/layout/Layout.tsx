@@ -20,30 +20,30 @@ export function LayoutUser() {
   const isScrolled = y > 0;
   const auth = localStorage.getItem("auth");
 
-  // const FetchAuth = () => {
-  //   if (auth) {
-  //     axios
-  //       .post(Api + "Auth/verifyToken", { auth })
-  //       .then((res) => {
-  //         if (res.data.status === 200) {
-  //           // console.log("Token ถูกต้อง");
-  //         }
-  //       })
-  //       .catch(() => {
-  //         nav("/logout");
-  //         Notifications.show({
-  //           title: "Token หมดอายุ",
-  //           message: "โปรดเข้าสู่ระบบอีกครั้ง",
-  //           autoClose: 3000,
-  //           color: "red",
-  //           icon: <IconExclamationMark />,
-  //         });
-  //       });
-  //   }
-  // };
+  const FetchAuth = () => {
+    if (auth) {
+      axios
+        .post(Api + "Auth/verifyToken", { auth })
+        .then((res) => {
+          if (res.data.status === 200) {
+            // console.log("Token ถูกต้อง");
+          }
+        })
+        .catch(() => {
+          nav("/logout");
+          Notifications.show({
+            title: "Token หมดอายุ",
+            message: "โปรดเข้าสู่ระบบอีกครั้ง",
+            autoClose: 3000,
+            color: "red",
+            icon: <IconExclamationMark />,
+          });
+        });
+    }
+  };
 
   useEffect(() => {
-    // FetchAuth();
+    FetchAuth();
   }, []);
 
   return (
