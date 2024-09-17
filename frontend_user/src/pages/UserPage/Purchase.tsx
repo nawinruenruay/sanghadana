@@ -489,7 +489,7 @@ export function Purchase() {
         }}
         centered
       >
-        <Flex gap="xs" mb={10}>
+        <Flex gap="xs">
           <Button
             variant={"light"}
             onClick={() => {
@@ -509,17 +509,6 @@ export function Purchase() {
             รูปภาพการถวายสังฆทาน
           </Button>
         </Flex>
-        <Text c={"red"} component="span">
-          หมายเหตุ : สามารถนำหมายเลขพัสดุไปตรวจสอบได้ที่{" "}
-          <Anchor
-            href="https://track.thailandpost.co.th/"
-            target="_blank"
-            underline="always"
-            c={"red"}
-          >
-            ไปรษณีย์ไทย
-          </Anchor>
-        </Text>
       </Modal>
 
       <Modal
@@ -535,34 +524,55 @@ export function Purchase() {
         }}
         centered
       >
-        <Flex align={"center"}>
-          <Text size={"md"}>หมายเลขพัสดุ : {Notetracking}</Text>
-          <CopyButton value={Notetracking} timeout={1500}>
-            {({ copied, copy }) => (
-              <Tooltip
-                label={copied ? "Copied" : "Copy"}
-                withArrow
-                position="right"
+        {Notetracking ? (
+          <>
+            <Flex align={"center"}>
+              <Text size={"md"}>หมายเลขพัสดุ : {Notetracking}</Text>
+              <CopyButton value={Notetracking} timeout={1500}>
+                {({ copied, copy }) => (
+                  <Tooltip
+                    label={copied ? "Copied" : "Copy"}
+                    withArrow
+                    position="right"
+                  >
+                    <ActionIcon
+                      color={copied ? "teal" : "gray"}
+                      variant="subtle"
+                      radius={8}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        copy();
+                      }}
+                    >
+                      {copied ? (
+                        <IconCheck style={{ width: rem(16) }} />
+                      ) : (
+                        <IconCopy style={{ width: rem(16) }} />
+                      )}
+                    </ActionIcon>
+                  </Tooltip>
+                )}
+              </CopyButton>
+            </Flex>
+            <Text c={"red"} component="span">
+              หมายเหตุ : สามารถนำหมายเลขพัสดุไปตรวจสอบได้ที่{" "}
+              <Anchor
+                href="https://track.thailandpost.co.th/"
+                target="_blank"
+                underline="always"
+                c={"red"}
               >
-                <ActionIcon
-                  color={copied ? "teal" : "gray"}
-                  variant="subtle"
-                  radius={8}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    copy();
-                  }}
-                >
-                  {copied ? (
-                    <IconCheck style={{ width: rem(16) }} />
-                  ) : (
-                    <IconCopy style={{ width: rem(16) }} />
-                  )}
-                </ActionIcon>
-              </Tooltip>
-            )}
-          </CopyButton>
-        </Flex>
+                ไปรษณีย์ไทย
+              </Anchor>
+            </Text>
+          </>
+        ) : (
+          <>
+            <Flex align={"center"}>
+              <Text component="span">คุณไม่ได้สั่งสินค้าผลิตภัณฑ์ของชุมชน</Text>
+            </Flex>
+          </>
+        )}
       </Modal>
 
       <Modal
