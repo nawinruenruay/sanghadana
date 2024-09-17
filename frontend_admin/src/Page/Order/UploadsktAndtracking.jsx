@@ -33,8 +33,8 @@ export function Uploadtracking({ close, closeWithSuccess, orderId }) {
       note_tracking: "",
     },
     validate: {
-      note_tracking: (val) =>
-        val.length < 10 ? "กรุณากรอกหมายเลขพัสดุให้ถูกต้อง" : null,
+      // note_tracking: (val) =>
+      //   val.length < 10 ? "กรุณากรอกหมายเลขพัสดุให้ถูกต้อง" : null,
     },
   });
 

@@ -18,6 +18,7 @@ import {
   rem,
   Modal,
   Center,
+  Anchor,
 } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { Carousel } from "@mantine/carousel";
@@ -29,6 +30,7 @@ import {
   IconMoodSad,
   IconChevronRight,
   IconCopy,
+  IconEye,
 } from "@tabler/icons-react";
 import { DataTable } from "mantine-datatable";
 import Swal from "sweetalert2";
@@ -70,6 +72,9 @@ export function Purchase() {
     {}
   );
   const [ModalImg, setModalImg] = useState(false);
+  const [ModalView, setModalView] = useState(false);
+  const [ModalTracking, setModalTracking] = useState(false);
+  const [Notetracking, setNotetracking] = useState("");
 
   const LoadDatatable = () => {
     setLoadingProfile(true);
@@ -123,6 +128,11 @@ export function Purchase() {
     } else {
       setDataImg(cachedImages[order_id]);
     }
+  };
+
+  const View = (note_tracking: string) => {
+    setModalView(true);
+    setNotetracking(note_tracking);
   };
 
   const options2: DateOptions = {
@@ -319,7 +329,12 @@ export function Purchase() {
                 textAlign: "center",
                 title: "จัดการ",
                 render: ({ status, order_id, note_tracking }) => (
-                  <Flex align={"center"} justify={"center"} gap={5}>
+                  <Flex
+                    align={"center"}
+                    justify={"center"}
+                    gap={5}
+                    wrap={"wrap"}
+                  >
                     {status == 1 ? (
                       <>
                         <Button
@@ -352,51 +367,20 @@ export function Purchase() {
                       <></>
                     ) : status == 4 ? (
                       <>
-                        {note_tracking ? (
-                          <>
-                            <Text size={"sm"}>
-                              หมายเลขพัสดุ : {note_tracking}
-                            </Text>
-                            <CopyButton value={note_tracking} timeout={1500}>
-                              {({ copied, copy }) => (
-                                <Tooltip
-                                  label={copied ? "Copied" : "Copy"}
-                                  withArrow
-                                  position="right"
-                                >
-                                  <ActionIcon
-                                    color={copied ? "teal" : "gray"}
-                                    variant="subtle"
-                                    radius={8}
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      copy();
-                                    }}
-                                  >
-                                    {copied ? (
-                                      <IconCheck style={{ width: rem(16) }} />
-                                    ) : (
-                                      <IconCopy style={{ width: rem(16) }} />
-                                    )}
-                                  </ActionIcon>
-                                </Tooltip>
-                              )}
-                            </CopyButton>
-                          </>
-                        ) : (
-                          <>
-                            <Button
-                              onClick={(e: React.MouseEvent) => {
-                                e.stopPropagation();
-                                FetchImage(order_id);
-                                setModalImg(true);
-                              }}
-                              variant={"default"}
-                            >
-                              หลักฐานรูปภาพการถวายสังฆทาน
-                            </Button>
-                          </>
-                        )}
+                        <Tooltip
+                          label={"หลักฐานการส่งสินค้าหรือรูปภาพถวายสังฆทาน"}
+                        >
+                          <ActionIcon
+                            onClick={(e: React.MouseEvent) => {
+                              e.stopPropagation();
+                              FetchImage(order_id);
+                              View(note_tracking);
+                            }}
+                            variant={"subtle"}
+                          >
+                            <IconEye />
+                          </ActionIcon>
+                        </Tooltip>
                       </>
                     ) : status == 5 ? (
                       <></>
@@ -492,6 +476,96 @@ export function Purchase() {
       </Paper>
 
       <Modal
+        title={"หลักฐานการส่งสินค้าหรือรูปภาพถวายสังฆทาน"}
+        opened={ModalView}
+        onClose={() => {
+          setModalView(false);
+          setDataImg([]);
+        }}
+        size={"xl"}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        centered
+      >
+        <Flex gap="xs" mb={10}>
+          <Button
+            variant={"light"}
+            onClick={() => {
+              setModalTracking(true);
+            }}
+            w={"50%"}
+          >
+            หลักฐานการส่งสินค้า
+          </Button>
+          <Button
+            variant={"light"}
+            onClick={() => {
+              setModalImg(true);
+            }}
+            w={"50%"}
+          >
+            รูปภาพการถวายสังฆทาน
+          </Button>
+        </Flex>
+        <Text c={"red"} component="span">
+          หมายเหตุ : สามารถนำหมายเลขพัสดุไปตรวจสอบได้ที่{" "}
+          <Anchor
+            href="https://track.thailandpost.co.th/"
+            target="_blank"
+            underline="always"
+            c={"red"}
+          >
+            ไปรษณีย์ไทย
+          </Anchor>
+        </Text>
+      </Modal>
+
+      <Modal
+        title={"หลักฐานการส่งสินค้า"}
+        opened={ModalTracking}
+        onClose={() => {
+          setModalTracking(false);
+        }}
+        size={"xl"}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        centered
+      >
+        <Flex align={"center"}>
+          <Text size={"md"}>หมายเลขพัสดุ : {Notetracking}</Text>
+          <CopyButton value={Notetracking} timeout={1500}>
+            {({ copied, copy }) => (
+              <Tooltip
+                label={copied ? "Copied" : "Copy"}
+                withArrow
+                position="right"
+              >
+                <ActionIcon
+                  color={copied ? "teal" : "gray"}
+                  variant="subtle"
+                  radius={8}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    copy();
+                  }}
+                >
+                  {copied ? (
+                    <IconCheck style={{ width: rem(16) }} />
+                  ) : (
+                    <IconCopy style={{ width: rem(16) }} />
+                  )}
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </CopyButton>
+        </Flex>
+      </Modal>
+
+      <Modal
         title={"รูปภาพการถวายสังฆทาน"}
         opened={ModalImg}
         onClose={() => {
@@ -502,10 +576,6 @@ export function Purchase() {
           backgroundOpacity: 0.55,
           blur: 3,
         }}
-        // classNames={{
-        //   content: classes.customModal,
-        //   header: classes.customModal,
-        // }}
         centered
       >
         <Carousel withIndicators height="100%">
