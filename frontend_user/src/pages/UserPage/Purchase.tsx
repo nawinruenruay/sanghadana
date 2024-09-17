@@ -588,16 +588,25 @@ export function Purchase() {
         }}
         centered
       >
-        <Carousel withIndicators height="100%">
-          {Array.isArray(DataImg) &&
-            DataImg.map((img: any, key: number) => (
-              <Carousel.Slide p={10} key={key}>
-                <Center>
-                  <Image maw={250} src={Api + img.pic_skt} />
-                </Center>
-              </Carousel.Slide>
-            ))}
-        </Carousel>
+        {DataImg.length !== 0 ? (
+          <>
+            <Carousel withIndicators height="100%">
+              {DataImg.map((img: any, key: number) => (
+                <Carousel.Slide p={10} key={key}>
+                  <Center>
+                    <Image maw={250} src={Api + img.pic_skt} />
+                  </Center>
+                </Carousel.Slide>
+              ))}
+            </Carousel>
+          </>
+        ) : (
+          <>
+            <Flex align={"center"}>
+              <Text component="span">คุณไม่ได้ทำสังฆทาน</Text>
+            </Flex>
+          </>
+        )}
       </Modal>
     </>
   );
