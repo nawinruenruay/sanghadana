@@ -329,7 +329,6 @@ export function Purchase() {
                     {status == 1 ? (
                       <>
                         <Button
-                          variant={"subtle"}
                           leftSection={<IconCash />}
                           onClick={(e: React.MouseEvent) => {
                             e.stopPropagation();
@@ -390,7 +389,6 @@ export function Purchase() {
                           <>
                             <Button
                               variant={"subtle"}
-                              color={"dark"}
                               leftSection={<IconEye />}
                               onClick={(e: React.MouseEvent) => {
                                 e.stopPropagation();
