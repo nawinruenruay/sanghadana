@@ -320,15 +320,11 @@ export function Purchase() {
                 textAlign: "center",
                 title: "จัดการ",
                 render: ({ status, order_id, note_tracking }) => (
-                  <Flex
-                    align={"center"}
-                    justify={"center"}
-                    gap={5}
-                    wrap={"wrap"}
-                  >
+                  <Flex align={"center"} justify={"center"} gap={5}>
                     {status == 1 ? (
                       <>
                         <Button
+                          variant={"subtle"}
                           leftSection={<IconCash />}
                           onClick={(e: React.MouseEvent) => {
                             e.stopPropagation();
@@ -357,7 +353,7 @@ export function Purchase() {
                       <>
                         {note_tracking ? (
                           <>
-                            <Text size={"md"}>
+                            <Text size={"sm"} c={"blue"}>
                               หมายเลขพัสดุ : {note_tracking}
                             </Text>
                             <CopyButton value={note_tracking} timeout={1500}>
@@ -370,6 +366,7 @@ export function Purchase() {
                                   <ActionIcon
                                     color={copied ? "teal" : "gray"}
                                     variant="subtle"
+                                    radius={8}
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       copy();
@@ -396,7 +393,7 @@ export function Purchase() {
                                 setModalImg(true);
                               }}
                             >
-                              ดูรูปภาพการถวายสังฆทาน
+                              รูปภาพการถวายสังฆทาน
                             </Button>
                           </>
                         )}
